@@ -116,7 +116,7 @@ INSERT INTO munkahelyek_neve (mhelyid, nev, telepules) VALUES
    (10, 'Falat Pékség', 'Komád'),
    (11, 'Korr Vaskereskedés', 'Csepűfalva');
 
---Kapcsolat tábla létrehozása
+-- Kapcsolat tábla létrehozása
 CREATE TABLE kapcsolat (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Egyedi azonosító
     nev VARCHAR(255) NOT NULL,          -- Név oszlop
