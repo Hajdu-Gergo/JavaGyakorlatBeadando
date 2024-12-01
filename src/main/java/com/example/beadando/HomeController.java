@@ -190,6 +190,30 @@ public class HomeController {
         return "redirect:/kapcsolat?success";
     }
 
+    @GetMapping("/uzenetek")
+    public String uzenetek(Model model) {
+        String str = uzenetekAdatok();
+        model.addAttribute("str", str);
+        return "admin";
+    }
+
+    private String uzenetekAdatok() {
+        StringBuilder str = new StringBuilder();
+        str.append("<h1>Üzenetek</h1>");
+        str.append("<table class=\"table table-warning table-striped w-50 mx-auto\">");
+        str.append("<thead><tr><th scope=\"col\">Név</th><th scope=\"col\">Üzenet</th><th scope=\"col\">Dátum</th></tr><thead><tbody>");
+        for (Kapcsolat kapcsolat : kapcsolatRepository.findAll()) {
+            str.append("<tr>");
+            str.append("<th scope=\"row\">");
+            str.append(kapcsolat.getNev()).append("</th><td>")
+                    .append(kapcsolat.getUzenet()).append("</td><td>")
+                    .append(kapcsolat.getDatum()).append("</td>");
+            str.append("</tr>");
+        }
+        str.append("</tbody></table>");
+        return str.toString();
+    }
+
 
 }
 
