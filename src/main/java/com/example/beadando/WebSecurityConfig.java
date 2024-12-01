@@ -32,7 +32,7 @@ public class WebSecurityConfig {
                                 .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/munkahelyek", "/kapcsolat**", "/api**").anonymous()
                                 .requestMatchers("/resources/**", "/","/home", "/munkahelyek", "/diakmunka", "/kapcsolat**").authenticated()
 
-                                .requestMatchers("/admin/**","/diak", "/uzenetek", "/kapcsolat**").hasRole("ADMIN")
+                                .requestMatchers("/admin/**","/diak", "/uzenetek", "/kapcsolat**", "/munkak**").hasRole("ADMIN")
                 )
                 .formLogin(
                         form -> form
