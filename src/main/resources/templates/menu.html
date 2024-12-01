@@ -3,7 +3,7 @@
   <div>
         <span sec:authorize="isAnonymous()">
             <a class="btn btn-light" th:href="@{/login}">Login</a>
-            <a class="btn btn-light" th:href="@{/regisztral}">Regisztrál</a>
+            <a class="btn btn-light" th:href="@{/regisztral}">Sign up</a>
         </span>
     <span sec:authorize="isAuthenticated()">
             <a class="btn btn-light" th:href="@{/home}">Home</a>
