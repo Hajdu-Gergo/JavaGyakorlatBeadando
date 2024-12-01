@@ -121,6 +121,6 @@ CREATE TABLE kapcsolat (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Egyedi azonosító
     nev VARCHAR(255) NOT NULL,          -- Név oszlop
     uzenet TEXT NOT NULL,               -- Üzenet oszlop
-    datum TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Dátum automatikusan az aktuális idő
+    datum TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- Dátum automatikusan az aktuális idő
 );
 

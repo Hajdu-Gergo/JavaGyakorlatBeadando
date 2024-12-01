@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SprintUp</title>
+    <title>SprintUp - Kapcsolat</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
 
@@ -116,11 +116,17 @@
 
     <main class="px-3">
         <img src="https://i.imgur.com/hF7VLLR.png" title="source: imgur.com"  alt="logo"/>
-        <!--h1>SprintUp Organization.</h1-->
-        <p class="lead">SprintUp is a dynamic startup dedicated to connecting students with valuable job opportunities. </p><p>By bridging the gap between academic life and professional experience, SprintUp empowers students to gain real-world skills while pursuing their education.</p><p> The platform offers flexible job listings tailored to student schedules, including internships, part-time roles, and remote work, ensuring that students can balance work with their studies.</p><p> SprintUp's mission is to foster growth, build experience, and help students sprint toward a successful future.</p>
-        <p class="lead">
-            <a th:href="@{/kapcsolat}" class="btn btn-lg btn-light fw-bold border-white bg-white">Contact Us</a>
-        </p>
+        <h1>Kapcsolatfelvétel</h1>
+        <form action="/kapcsolat" method="post">
+            <label for="nev">Név:</label><br>
+            <input class="rounded-5" type="text" id="nev" name="nev" required><br><br>
+
+            <label for="uzenet">Üzenet:</label><br>
+            <textarea class="rounded-5" id="uzenet" name="uzenet" rows="5" required></textarea><br><br>
+
+            <button class="btn btn-light" type="submit">Küldés</button>
+        </form>
+        <br>
     </main>
 
     <footer class="mt-auto text-white-50">

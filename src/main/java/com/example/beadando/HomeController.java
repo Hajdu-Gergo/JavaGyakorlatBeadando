@@ -6,6 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDateTime;
+import java.util.Locale;
 
 @Controller
 public class HomeController {
@@ -156,6 +160,34 @@ public class HomeController {
                     .append(munka.getOradij()).append(" Ft/óra<br>");
         }
         return str.toString();
+    }
+
+    @Autowired
+    private KapcsolatRepository kapcsolatRepository;
+
+    // Az űrlap megjelenítése
+    @GetMapping("/kapcsolat")
+    public String kapcsolatForm() {
+        return "kapcsolat"; // Ez a kapcsolat.html fájl a resources/templates mappában van
+    }
+
+    // Az adatok fogadása és mentése
+    @PostMapping("/kapcsolat")
+    public String submitKapcsolat(
+            @RequestParam("nev") String nev,
+            @RequestParam("uzenet") String uzenet) {
+
+        Kapcsolat kapcsolat = new Kapcsolat();
+        kapcsolat.setNev(nev);
+        kapcsolat.setUzenet(uzenet);
+        kapcsolat.setDatum(LocalDateTime.now());
+
+        if(kapcsolat.getNev().isEmpty() || kapcsolat.getUzenet().isEmpty())
+            return "redirect:/kapcsolat?error";
+        // Mentés az adatbázisba
+        kapcsolatRepository.save(kapcsolat);
+
+        return "redirect:/kapcsolat?success";
     }
 
 
