@@ -30,7 +30,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/munkahelyek").anonymous()
-                                .requestMatchers("/resources/**", "/","/home", "/munkak", "/diakmunka").authenticated()
+                                .requestMatchers("/resources/**", "/","/home", "/munkahelyek", "/diakmunka").authenticated()
 
                                 .requestMatchers("/admin/**","/diak").hasRole("ADMIN")
                 )

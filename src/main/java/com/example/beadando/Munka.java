@@ -14,6 +14,10 @@ public class Munka {
     @JoinColumn(name = "diakaz")
     private Diak diak;
 
+    @OneToOne
+    @JoinColumn(name = "mhelyid")
+    private Munkahely mhely;
+
     private String allas;
     private LocalDateTime datum;
     private Integer oradij;
@@ -38,12 +42,20 @@ public class Munka {
     }
 
     public Diak getDiak() {
-        return diak;
+        if(diak != null){
+            return diak;
+        }
+        return new  Diak();
     }
 
     public void setDiak(Diak diak) {
         this.diak = diak;
     }
+
+    public Munkahely getMhely() {
+        return mhely;
+    }
+
 
     public String getAllas() {
         return allas;

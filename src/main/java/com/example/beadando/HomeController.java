@@ -13,10 +13,10 @@ public class HomeController {
     public String home() {
         return "index";
     }
-    @GetMapping("/home")
+    /*@GetMapping("/home")
     public String user(Model model) {
         return "user";
-    }
+    }*/
     @GetMapping("/admin/home")
     public String admin() {
         return "admin";
@@ -59,17 +59,24 @@ public class HomeController {
     public String fooldal(Model model) {
         String str = diakokAdatai();
         model.addAttribute("str", str);
-        return "index";
+        return "admin";
     }
 
     // Diákok adatai
     private String diakokAdatai() {
         StringBuilder str = new StringBuilder();
+        str.append("<h1>Diákok adatai</h1>");
+        str.append("<table class=\"table table-warning table-striped w-25 mx-auto\">");
+        str.append("<thead><tr><th scope=\"col\">Azonosító</th><th scope=\"col\">Név</th><th scope=\"col\">Születési idő</th></tr><thead><tbody>");
         for (Diak diak : diakRepo.findAll()) {
-            str.append(diak.getDiakaz()).append("; ")
-                    .append(diak.getNev()).append("; ")
-                    .append(diak.getSzulido()).append("<br>");
+            str.append("<tr>");
+            str.append("<th scope=\"row\">");
+            str.append(diak.getDiakaz()).append("</th><td>")
+                    .append(diak.getNev()).append("</td><td>")
+                    .append(diak.getSzulido()).append("</td>");
+            str.append("</tr>");
         }
+        str.append("</tbody></table>");
         return str.toString();
     }
 
@@ -78,38 +85,53 @@ public class HomeController {
     public String munkakAdatai(Model model) {
         String str = munkakAdatok();
         model.addAttribute("str", str);
-        return "index";
+        return "admin";
     }
 
     private String munkakAdatok() {
         StringBuilder str = new StringBuilder();
+        str.append("<h1>Munkák adatai</h1>");
+        str.append("<table class=\"table table-warning table-striped w-50 mx-auto\">");
+        str.append("<thead><tr><th scope=\"col\">Név</th><th scope=\"col\">Munkahely</th><th scope=\"col\">Állás</th><th scope=\"col\">Dátum</th><th scope=\"col\">Óradíj</th><th scope=\"col\">Óraszám</th><th scope=\"col\">Foglalkoztatás típusa</th></tr><thead><tbody>");
         for (Munka munka : munkaRepo.findAll()) {
-            str.append(munka.getId()).append("; ")
-                    .append(munka.getAllas()).append("; ")
-                    .append(munka.getDatum()).append("; ")
-                    .append(munka.getOradij()).append("; ")
-                    .append(munka.getOraszam()).append("; ")
+            str.append("<tr>");
+            str.append("<th scope=\"row\">");
+            str.append(munka.getDiak().getNev()).append("</th><td>")
+                    .append(munka.getMhely().getNev()).append("</td><td>")
+                    .append(munka.getAllas()).append("</td><td>")
+                    .append(munka.getDatum()).append("</td><td>")
+                    .append(munka.getOradij()).append("</td><td>")
+                    .append(munka.getOraszam()).append("</td><td>")
                     .append(munka.getKozepiskolas() ? "Középiskolás" : "Felnőtt")
-                    .append("<br>");
+                    .append("</td>");
+            str.append("</tr>");
         }
+        str.append("</tbody></table>");
         return str.toString();
     }
 
     // Munkahelyek adatai
-    @GetMapping("/munkahelyek")
+    @GetMapping("/home")
     public String munkahelyekAdatai(Model model) {
         String str = munkahelyekAdatok();
         model.addAttribute("str", str);
-        return "index";
+        return "user";
     }
 
     private String munkahelyekAdatok() {
         StringBuilder str = new StringBuilder();
+
+        str.append("<div class=\"rounded-5\"><table class=\"table table-dark table-striped w-50 mx-auto\">");
+        str.append("<thead><tr><th scope=\"col\">Azonosító</th><th scope=\"col\">Név</th><th scope=\"col\">Település</th></tr><thead><tbody>");
         for (Munkahely munkahely : munkahelyRepo.findAll()) {
-            str.append(munkahely.getMhelyid()).append("; ")
-                    .append(munkahely.getNev()).append("; ")
-                    .append(munkahely.getTelepules()).append("<br>");
+            str.append("<tr>");
+            str.append("<th scope=\"row\">");
+            str.append(munkahely.getMhelyid()).append("</th><td>")
+                    .append(munkahely.getNev()).append("</td><td>")
+                    .append(munkahely.getTelepules()).append("</td>");
+            str.append("</tr>");
         }
+        str.append("</tbody></table></div>");
         return str.toString();
     }
 
@@ -135,6 +157,8 @@ public class HomeController {
         }
         return str.toString();
     }
+
+
 }
 
 
