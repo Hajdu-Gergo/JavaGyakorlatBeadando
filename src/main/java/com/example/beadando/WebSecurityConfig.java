@@ -29,9 +29,9 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/munkahelyek", "/kapcsolat**", "/api**").anonymous()
+                                .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz","/munkahelyek", "/kapcsolat**").anonymous()
                                 .requestMatchers("/resources/**", "/","/home", "/munkahelyek", "/diakmunka", "/kapcsolat**").authenticated()
-
+                                .requestMatchers("/api/diakok/**", "/kapcsolat").permitAll()
                                 .requestMatchers("/admin/**","/diak", "/uzenetek", "/kapcsolat**", "/munkak**").hasRole("ADMIN")
                 )
                 .formLogin(
